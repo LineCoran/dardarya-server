@@ -12,7 +12,7 @@ export const createOrder = async (req, res) => {
         const { img } = req.files
 
         let fileName = uuid.v4() + ".jpg"
-        img.mv(path.resolve(__dirname, '..', 'static', fileName))
+        img.mv(path.resolve(__dirname, '..', '.output/static', fileName))
         const q = `INSERT INTO orders(description, cost, weight, link, img, createdat) VALUES ('${description}', ${cost}, ${weight}, '${link}', '${fileName}', '${createdat}');`
     
         pool.query(q, (err, data) => {
