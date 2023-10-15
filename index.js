@@ -15,20 +15,11 @@ app.use(express.static(path.resolve(__dirname, 'static')))
 app.use(cors());
 app.use(fileUpload({}));
 const port = 3000
-
-app.post("/create", async (req, res) => {
-    const data = res.body;
-    await User.add(data)
-    res.send({msg: "User added"})
-})
-
-
-
 app.listen(port, () => {
     console.log('Server started on port: ', port)
 })
 
-app.use('/api', orderRouter)
+app.use('/', orderRouter)
 
 
 
