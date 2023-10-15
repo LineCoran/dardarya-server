@@ -19,7 +19,7 @@ pool.connect((err) => {
       weight int default null,
       cost int default null,
       link varchar(255) not null,
-      img varchar(255) not null,
+      img text not null,
       createdAt date not null
     );
 `

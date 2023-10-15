@@ -11,9 +11,11 @@ export const createOrder = async (req, res) => {
         const { description, link, cost, weight, createdat } = req.body
         const { img } = req.files
 
-        let fileName = uuid.v4() + ".jpg"
-        img.mv(path.resolve(__dirname, '..', 'public', fileName))
-        const q = `INSERT INTO orders(description, cost, weight, link, img, createdat) VALUES ('${description}', ${cost}, ${weight}, '${link}', '${fileName}', '${createdat}');`
+        const base64String = Buffer.from(img.data).toString ('base64');
+
+        const dataURI = 'data:image/jpeg;base64,' + base64String;
+
+        const q = `INSERT INTO orders(description, cost, weight, link, img, createdat) VALUES ('${description}', ${cost}, ${weight}, '${link}', '${dataURI}', '${createdat}');`
     
         pool.query(q, (err, data) => {
             if (err) {
