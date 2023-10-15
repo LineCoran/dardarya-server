@@ -5,7 +5,7 @@ import orderRouter from './routes/order.js';
 import fileUpload from 'express-fileupload';
 import path from 'path'
 import { fileURLToPath } from 'url';
-import fs from 'fs';
+// import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,9 +20,9 @@ app.listen(port, () => {
     console.log('Server started on port: ', port)
 })
 
-fs.mkdir('static', err => {
-    if(err) throw err;
-});
+// fs.mkdir('static', err => {
+//     if(err) throw err;
+// });
 
 app.use('/', orderRouter)
 
